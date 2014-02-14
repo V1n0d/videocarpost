@@ -18,7 +18,9 @@ class HomeController < ApplicationController
 	  							:transaction_id => params[:tx],
 	  							:amount => params[:amt]
   							)
+  		flash.now[:notice] = "Your Payment is successful."
   		redirect_to root_url
+  		
 
   							
   	else

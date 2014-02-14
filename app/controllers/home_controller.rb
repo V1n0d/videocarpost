@@ -10,7 +10,8 @@ class HomeController < ApplicationController
   #Handles Paypal response and validation
   def handle_response
   	if params[:st]=="Completed"
-    	current_user.can_upload = current_user.can_upload.to_i+3
+  	paypal_addition = params[:amt].split(':')[0].to_i/3
+    	current_user.can_upload = current_user.can_upload.to_i+paypal_addition
     	current_user.save
   		payment = Payment.create(
 	  							:user_id => current_user.id,

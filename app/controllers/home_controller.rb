@@ -18,6 +18,9 @@ class HomeController < ApplicationController
 	  							:transaction_id => params[:tx],
 	  							:amount => params[:amt]
   							)
+  		redirect_to root_url
+
+  							
   	else
   		redirect_to paypal_error_path
   	end

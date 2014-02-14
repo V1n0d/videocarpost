@@ -1,0 +1,119 @@
+
+html, body{
+	height: 100%;
+}
+
+/*@media screen and (max-width: 940px){
+	body{
+		width: 100%;
+	}
+}*/
+form{
+	width: 500px;
+}
+@media screen and (max-width:940px){
+	form{
+		width: 100%;
+	}
+}
+main{
+	text-align: center;
+	margin: 2%;
+}
+.register{
+	text-align: center;
+	display: block;
+}
+
+.remember-me{
+	text-align: right;
+	input{
+		width: 15px !important;
+	}
+	label{
+		width: 110px !important;
+	}
+}
+
+form{
+	padding: 1%;
+	display: inline-block;
+	border: 1px #ddd solid;
+	margin-top: 2%;
+}
+
+form .all-fields{
+	margin-top: 4%;
+}
+form .field{
+	position: relative
+}
+form label{
+	display: inline-block;
+	padding-right: 12px;
+	text-align: right;
+	width: 150px;
+	margin-top: 10%;
+	font-size: 14px;
+}
+form input{
+	border: 1px  #028482 solid;
+	border-radius: 5px;
+	width: 47%;
+}
+form img{
+	width: 155px;
+	padding-top: 4%
+}
+.btn-danger {
+	margin-left: 2%;
+	width: 30%;
+	margin-top: 4%;
+}
+@media(max-width: 480px){
+	form{
+		position: relative;
+		display: block;
+	}
+	form .all-fields{
+		margin-top: 5%;
+		display: block;
+	}
+	form .field{
+		width: 100%;
+		display: block;
+	}
+	form input{
+		width: 47%;
+	}
+	form label {
+		font-size: 0.8em;
+		width: 132px;
+	}
+	form img{
+		width: 130px;
+	}
+}
+img{
+	cursor: pointer;
+}
+input{
+	padding: 5px;
+}
+
+.signup{
+	display: block;
+    padding-top: 18px;
+}
+
+.buttons{
+	display: block;
+	height: 60px;
+}
+
+
+@media screen and (max-width: 480px){
+	.buttons{
+		height: 100px;
+	}
+}

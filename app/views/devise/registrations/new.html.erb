@@ -1,0 +1,170 @@
+<%= stylesheet_link_tag "devise", media: "all" %>
+
+
+
+<div class="container">
+	<div class="text-center page-header">
+ 		<h2>Register Here</h2>
+	</div>
+</div>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= devise_error_messages! %>
+
+<div class="all-fields">
+	<div class="field">
+		<%= f.label :first_name %>
+		<%= f.text_field :first_name, :autofocus => true %>
+	</div>
+	<div class="field">
+		<%= f.label :last_name %>
+		<%= f.text_field :last_name %>
+	</div>
+	<div class="field">
+		<%= f.label :email %>
+		<%= f.email_field :email %>
+	</div>
+	<div class="field">
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+	</div>
+	<div class="field">
+		<%= f.label :password_confirmation %>
+		<%= f.password_field :password_confirmation %>
+	</div>
+	<div class="field">
+		<%= f.label :contact_number %>
+		<%= f.text_field :contact_number %>
+	</div>
+	<div class="field">
+		<%= f.label :profile_pic %>
+		<%= f.file_field :profile_pic,:class=>"hide",:accept=>"image/*" %>
+		<img src="img/car.jpg" class="upload-photo preview">
+	</div>
+</div>
+<button type="submit" class="btn btn-danger register-btn">Register</button>
+</div>
+<% end %>
+<div class="hide">
+<%= render "devise/shared/links" %>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+			function readImage(input,from) {
+				if ( input.files && input.files[0] ) {
+					var FR= new FileReader();
+					FR.onload = function(e) {
+						$(from).attr( "src", e.target.result );
+					};       
+					FR.readAsDataURL( input.files[0] );
+				}
+			}
+			$(document).on("click",".upload-photo",function(e){
+				e.preventDefault();
+				$("#user_profile_pic").trigger("click");
+				return false;
+			});		
+			$(document).on("change","#user_profile_pic",function(e){
+				readImage(this,".preview");
+			});		
+		$(document).on("click",".register-btn",function(e){
+			if($("#new_user").valid()){
+				return true 
+			}
+			else{
+				return false
+			}				
+		});
+
+		$.validator.addMethod("is_email_avail", function (value, element) {
+			var is_avail = false;
+			$.ajax({
+				type: "POST",
+				url: '/is_email_avail.json', 
+				async: false,
+				data: {"email":value},
+				success: function (data) {
+					is_avail = data.status
+				}
+			});
+				// console.log(is_avail);
+				if(is_avail)
+					return false
+				else
+					return true
+			}, 'This email has already been registered');
+
+		$("#new_user").validate({
+			errorElement: "span",
+			highlight: function (element, errorClass) {
+				$(element).addClass('error');
+			},
+			rules: {
+				"user[password]": {
+					'required' : true,
+					'minlength': 8
+				},
+				"user[email]": {
+					'required' : true,
+					'email' : true,
+					'is_email_avail' : true
+				},
+				"user[password_confirmation]": {
+					'required': true,
+					'minlength': 8,
+					'equalTo': "#user_password"
+				},
+				"user[contact_number]":{
+					'required': true,
+					'minlength': 10
+				},
+				"user[first_name]":{
+					'required': true
+				},
+				"user[last_name]":{
+					'required': true
+				}
+			},
+			messages: {
+				"user[password]": {
+					'required' : "Enter the Password",
+					'minlength' : "Enter atleast 8 characters"
+				},
+				"user[email]": {
+					'required' : 'Enter valid email',
+					'email' : 'Enter valid email',
+					'is_email_avail' : 'Email already taken'
+				},
+				"user[password_confirmation]": {
+					'required' : "Enter the Password",
+					'minlength' : "Enter atleast 8 characters",
+					'equalTo': "Password doesn't match"
+				},
+				"user[first_name]": {
+					'required' : "Enter First name",
+				},
+				"user[last_name]": {
+					'required' : "Enter Last name"
+				},
+				"user[contact_number]": {
+					'required' : "Enter Contact number"
+				}
+			}
+		});
+});
+</script>
+
+<style type="text/css">
+	.page-header{
+	  color: #888;
+	}
+	@media screen and (min-width: 940px){
+		.all-fields{
+			width: 100% !important;
+		}
+		.body-container{
+		width: 970px;
+		min-height: 100% !important;
+		}
+	}
+</style>

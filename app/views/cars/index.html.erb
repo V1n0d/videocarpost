@@ -1,0 +1,459 @@
+<%= stylesheet_link_tag "cars", media: "all" %>
+<%= javascript_include_tag "cars/application" %>
+
+<div class="search-container">
+	<div class="container">
+		<button class="show-tab pull-right">Search <span class="caret"></span></button>
+		<form action="/cars" method="get" class="search-form" id="search_form">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-xs-12">
+					<div class="row">
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<label class="filter-desc">Zip Code</label>
+							<input type="text" name="zip_code" class="form-control" placeholder="632014" value="<%= params[:zip_code] %>">
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<label class="filter-desc">Year</label>
+							<input type="text" name="year" class="form-control" placeholder="2013" value="<%= params[:year] %>">
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<label class="filter-desc">Vehicle Make</label>
+							<select name="vehicle_make_name" class="form-control vehicle_make">
+								<option value="">-- Select --</option>
+								<% VehicleMake.all.each do |vm| %>
+								<% if params[:vehicle_make_name] == vm.name %>
+								<option value="<%=vm.id%>" selected><%=vm.name%></option>
+								<% else %>
+								<option value="<%=vm.id%>"><%=vm.name%></option>
+								<% end %>
+								<% end %>
+							</select>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 car_models">
+							<label class="filter-desc">Car Model</label>
+							<select name="car_model_name" class="form-control">
+								<option value="">-- Select --</option>
+							</select>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<label class="filter-desc">Miles Upto</label>
+							<select name="miles_upto" class="form-control">
+								<option value="">-- Select --</option>
+								<option value="20000">Upto 20k</option>
+								<option value="35000">Upto 35k</option>
+								<option value="50000">Upto 50k</option>
+								<option value="60000">Upto 60k</option>
+								<option value="75000">Upto 75k</option>
+								<option value="100000">Upto 100k</option>
+							</select>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<label class="filter-desc">Price Upto</label>
+							<select name="price_upto" class="form-control">
+								<option value="">-- Select --</option>
+								<option value="5000">Upto $5,000</option>
+								<option value="10000">Upto $10,000</option>
+								<option value="12000">Upto $12,000</option>
+								<option value="15000">Upto $15,000</option>
+								<option value="20000">Upto $20,000</option>
+								<option value="25000">Upto $25,000</option>
+								<option value="30000">Upto $30,000</option>
+								<option value="40000">Upto $40,000</option>
+								<option value="50000">Upto $50,000</option>
+							</select>
+						</div>
+					
+						<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 text-center">
+							<input type="hidden" name="car_id" id="car_id" value="">
+							<button type="submit" href="#" class="search-btn">Search</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+<!-- Video container -->
+<% if flash[:alert] || flash[:notice]%>
+<div class="no-credits"><%= flash[:alert] || flash[:notice] %></div>
+<% end %>
+
+
+<% if @message=='' %>
+
+<div class="video-container">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 main-video">
+				<video class="main-vid" muted><source src=<%= @main_video.try(:video).try(:url) %> type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+
+				<div id="video-controls">
+					<button type="button" id="play-pause"><span id="play_btn" class="glyphicon glyphicon-play"></span></button>
+				</div>
+			</div>
+			<div class="col-lg-4 owner-desc">
+				<div class="row">
+					<div class="col-lg-4 col-xs-12">
+						<div class="profile text-center">
+							<img src=<%= @main_video.try(:user).profile_image %> alt="..." class=" profile-pic img-responsive">
+						</div>
+					</div>
+					<div class="col-lg-8 col-xs-12 text-center">
+						<div class="owner-name">
+							<span><%= @main_video.try(:user).try(:first_name) %></span>
+							<span><%=@main_video.try(:user).try(:last_name) %></span>
+						</div>
+						<a href="/display_user/<%= @main_video.try(:user_id) %>" class="contact-btn">View user profile</span>
+						</a>
+					</div>
+				</div>
+				<div class="owner-details">
+					<div class="row" style="margin-left:0px;">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 user-profile-padding">
+							<span class="owner-info-label">Year</span>
+						</div>
+						<div class="col-lg-3 col-md-3 col-xs-6 col-sm-3 user-profile-padding" style="padding-right:0px;">
+							<span class=""> <%= @main_video.try(:year) %></span>
+						</div>
+						<div class="col-lg-3 col-md-3 col-xs-6  col-sm-3 user-profile-padding price-tab" style="padding-left:0px">
+							<span class="owner-info-label">Price</span>
+						</div>
+						<div class="col-lg-3 col-md-3 col-xs-6  col-sm-3 user-profile-padding price-tab" style="padding-left:0px">
+							<span class="">$ <%= @main_video.try(:price) %></span>
+						</div>
+						<div class="col-lg-3 col-md-3 col-xs-6  col-sm-3 user-profile-padding" style="padding-right:0px;">
+							<span class="owner-info-label">Miles</span>
+						</div>
+						<div class="col-lg-3 col-md-3 col-xs-6 col-sm-3  user-profile-padding" >
+							<span class=""> <%= @main_video.try(:miles) %></span>
+						</div>
+						<div class="col-lg-3 col-md-3 col-xs-6  col-sm-3 user-profile-padding price-tab" style="padding-left:0px">
+							<span class="owner-info-label">Zip Code</span>
+						</div>
+						<div class="col-lg-3 col-md-3 col-xs-6 col-sm-3  user-profile-padding price-tab" style="padding-left:0px">
+							<span class=""><%= @main_video.try(:zip_code) %></span>
+						</div>
+					</div>
+					
+					<div class="row" style="margin-left:0px;">
+						<div class="col-lg-6 col-md-6 col-xs-6 user-profile-padding">
+							<span class="owner-info-label">Vehicle Make</span>
+						</div>
+						<div class="col-lg-6 col-md-6 col-xs-6 user-profile-padding" >
+							<span class=""><%= @main_video.try(:vehicle_make).try(:name) %></span>
+						</div>
+					</div>
+					<div class="row" style="margin-left:0px;">
+						<div class="col-lg-6 col-md-6 col-xs-6 user-profile-padding">
+							<span class="owner-info-label">VIN</span>
+						</div>
+						<div class="col-lg-6 col-md-6 col-xs-6 user-profile-padding" >
+								<span class=""><%= @main_video.try(:vin) %></span>
+					</div>
+					</div>
+					<div class="row" style="margin-left:0px;">
+						<div class="col-lg-6 col-md-6 col-xs-6 user-profile-padding">
+							<span class="owner-info-label">Car Model</span>
+						</div>
+						<div class="col-lg-6 col-md-6 col-xs-6 user-profile-padding" >
+							<span class=""><%= @main_video.try(:car_model).try(:name) %></span>
+						</div>
+					</div>
+					
+					<div class="row" style="margin-left:0px;">
+						<div class="col-lg-6 col-md-6 col-xs-6 user-profile-padding">
+							<span class="owner-info-label">DealerShip Name</span>
+						</div>
+						<div class="col-lg-6 col-md-6 col-xs-6 user-profile-padding" >
+							<span class=""><%= @main_video.try(:dealership_name) %></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Video container ends here -->
+<div class="recommended-video-container">
+	<div class="video-recommend-head">
+		<div class="container">
+			<span id="<%=@results.length %>">Recommended Videos</span>
+			<% #if @results.length>5 %>
+			<span class="pull-right slider-controls hide">
+				<a id="prev" href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
+				<a id="next" href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</span>
+			<% #end %>
+		</div>
+	</div>
+	<div class="container">
+
+		<div class="row">
+				<div class="list_carousel responsive">
+					<ul id="foo">
+					<% i = 1 %>
+					<% @results.each do |c| %>
+					<% if @main_video!=c%>
+					<li>	
+						<div class="video-list text-center">
+							<div class=" video-tab">
+								<a class="car-video-url" data-carid="<%= c.id %>" href="#<%= c.id %>">
+									<div class="video-controls" style="visibility: visible;">
+									<button id="play-pause" class="text-center" type="button">
+										<span class="glyphicon glyphicon-play" id="play_btn"></span>
+									</button>
+								</div>
+									<img src="<%= c.video.url(:thumb) %>" class="recommend-img">
+								</a>
+								<div class="recommended-video-desc text-left">
+									<span class="price">$ <%= c.try(:price) %></span>
+									<span class="author"><%= c.try(:vehicle_make).try(:name) %></span>
+									<span class="product-desc"><%= c.try(:car_model).try(:name) %></span>
+								</div>
+							</div>
+						</div>
+					</li>
+					<% end %> 
+					<% end %> 
+				</ul>
+			</div>
+
+			<% if @results.length == 1 %>
+			<h2>No Recommended Videos</h2>
+			<% end %>
+		</div>
+	</div>
+</div>
+<% end %>
+
+<!-- Premium Account -->
+<div class="premium-account-container">
+	<div class="premium-account-head">
+		<div class="container">
+			<span>Premium Account</span>
+		</div>
+	</div>
+	<div class="premium-membership-form">
+		<div class="container">
+			<div class="row">
+				<div id="video-container" class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+					<video width="100%" height="100%">
+						<source src="video/dumb-die.mp4" type="video/mp4">
+							<source src="video/dumb-die.ogg" type="video/ogg">
+								Your browser does not support the video tag.
+							</video>
+						</div>
+						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+							<div class="membership-text">
+								<span class="membership-head">Lorem ipsum header</span>
+								<br>
+								<span class="membeship-desc">	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+							</div>
+							<%= link_to "Click here to buy", "/buy_credits", :class => "buy-btn text-center" %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<style>
+		/* STYLE FOR mouse hover and out on play button */
+		#video-controls .icon-control{
+			visibility: hidden !important;
+		} 
+		.main-video:hover #video-controls .icon-control, .main-video.hover #video-controls .icon-control { 
+			display: block;
+			visibility: visible !important; 
+		}
+	</style>
+	<script>
+// JQUERY JAVASCRIPT FOR index.html
+
+
+$(document).ready(function(){
+
+	if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)){
+			console.log('mobile')
+		$('.slider-controls').removeClass('hide')
+	}else{
+		if($('#foo li').length>3){
+			$('.slider-controls').removeClass('hide')
+		}
+	}
+
+
+
+
+	$('.show-tab').click(function(){
+		$('.search-form').toggle("slow");
+	});
+
+
+
+	$(".vehicle_make").change(function () {
+		if($('.vehicle_make').val()==''){
+			$('select[name="car_model_name"]').html('<option value="">-- Select --</option>')
+			return false;
+		}
+
+	$( ".vehicle_make option:selected" ).each(function() {
+			$.get('/dynamic_models',{brand_id: $(this).val(), from: 'index'}, function(data){
+				$(".car_models").html(data);
+			});
+		});
+	});
+
+	if($(window).width()>768)
+	{
+		var video_size = $('.main-video').height();
+		video_size+=20;
+		$('.owner-desc').css("height",video_size);
+	}
+
+	$(document).on("click",".search-btn",function(e){
+
+		if($("#search_form").valid()){
+			return true;
+		}else{
+			return false;
+		}  
+
+	});
+
+	$("#search_form").validate({
+		errorElement: "span",
+		highlight: function (element, errorClass) {
+      $(element).addClass('error');
+		},
+		rules: {
+			"year":{
+				'digits': true,
+				'rangelength': [4, 4]
+			},
+			"zip_code":{
+				'digits': true,
+				'minlength': 3
+			}
+		},
+		messages: {
+			"year": {
+				'digits': "Digits only",
+				'rangelength': "Length should be 4"
+			},
+			"zip_code": {
+				'digits': "Digits only",
+				'minlength': "Minimum length 3"
+			}
+		}
+	});
+
+
+$(window).resize(function(){
+	var viewPortWidth = $(window).width();
+	if(viewPortWidth>768)
+	{
+		$('.search-form').show();
+
+		var video_size = $('.main-video').height();
+		video_size+=20;
+		$('.owner-desc').css("height",video_size);
+	}
+	if(viewPortWidth<768)
+	{
+		$('.search-form').css("display","none");
+		$('.owner-desc').css("height","auto");
+	}
+});
+
+$('.car-video-url').on('click',function(evt){
+	evt.preventDefault();
+	$('#car_id').val($(this).attr('data-carid'))
+	$('.search-form').submit();
+})
+
+	var video_ctrl = $('.main-vid');
+
+  // Buttons
+  var playButton = $("#play-pause");
+  var play_btn = $("#play_btn");
+  var video_ctrl_paused= false;
+  var video_toggle = false;
+  playButton.on('click', function(event){
+  	video_toggle = true;
+  	if (!video_ctrl_paused) {
+  		video_ctrl.get(0).play();
+  		$(this).removeClass('icon-control')
+  		$(play_btn).attr('class','glyphicon glyphicon-pause')
+  		$(this).css({'opacity':0.3,'background-color':"rgba(241, 17, 20, 0.16)"})
+  		video_ctrl_paused = true;
+
+  	} else {
+  		video_ctrl.get(0).pause();
+  		$(this).addClass('icon-control')
+  		$(play_btn).attr('class','glyphicon glyphicon-play');
+  		$(this).css({'opacity':1.0,'background-color':"#D00B0E"})
+  		video_ctrl_paused = false;
+  	}
+  });
+
+  // $(video_ctrl).on('mouseout',function(){
+  // 	if (video_toggle && video_ctrl_paused) {
+  // 		$('#video-controls').hide()
+  // 	}
+  // })
+$(video_ctrl).on('mouseover',function(){
+	if (video_toggle && video_ctrl_paused) {
+		$('#video-controls').show()
+	}
+})
+
+var initial_status = false;
+var video_premium = $('#vid_pre');
+var play_btn_pre = $('.play-pause-premium');
+
+$('#video-controls').css('visibility','visible')
+
+$('#video-controls').on('mouseover',function(){
+	if(!initial_status){
+		$('#video-controls').css('visibility','visible')
+	}
+})
+
+if($('#foo li').length<4){
+	$('#foo li').each(function(){
+		$(this).css('width','225px')
+	})
+}
+
+
+
+play_btn_pre.on('click', function(event){
+	if (video_premium.paused == true) {
+    // Play the video
+    video_premium.get(0).play();
+    console.log("paused");
+	    // Update the button text to 'Pause'
+	    play_btn.attr('class','glyphicon glyphicon-pause');
+
+	  } else {
+	    // Pause the video
+	    video_premium.get(0).pause();
+	    console.log("pal");
+	    // Update the button text to 'Play'
+	    play_btn.attr('class','glyphicon glyphicon-play');
+	  }
+	})
+
+})
+
+
+
+</script>
+

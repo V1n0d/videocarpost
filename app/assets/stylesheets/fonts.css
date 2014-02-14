@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'segoe_uibold';
+    src: url('/assets/fonts/segoeui-webfont-bold/segoeuib-webfont.eot');
+    src: url('/assets/fonts/segoeui-webfont-bold/segoeuib-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/segoeui-webfont-bold/segoeuib-webfont.woff') format('woff'),
+         url('/assets/fonts/segoeui-webfont-bold/segoeuib-webfont.ttf') format('truetype'),
+         url('/assets/fonts/segoeui-webfont-bold/segoeuib-webfont.svg#segoe_uibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'segoe_uiregular';
+    src: url('/assets/fonts/segoeui-webfont/segoeui-webfont.eot');
+    src: url('/assets/fonts/segoeui-webfont/segoeui-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/segoeui-webfont/segoeui-webfont.woff') format('woff'),
+         url('/assets/fonts/segoeui-webfont/segoeui-webfont.ttf') format('truetype'),
+         url('/assets/fonts/segoeui-webfont/segoeui-webfont.svg#segoe_uiregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

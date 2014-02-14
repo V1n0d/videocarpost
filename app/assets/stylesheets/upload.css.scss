@@ -1,0 +1,55 @@
+html, body{
+	height: 100%;
+}
+
+.wrap{
+	min-height: 100%;
+	padding-bottom: 40px;
+	margin-bottom: -40px;
+}
+
+
+.details{
+	padding: 10px;
+	font-size: 24px;
+	text-align: center;
+	color: #888;
+}
+
+.field{
+	padding-top: 10px;
+}
+
+.input-field{
+	display: inline-block !important;
+	width:  170px;
+}
+.trigger-video-upload{
+	font-size: 100px;
+}
+.trigger-video-upload:hover{
+	text-decoration: none;
+}
+
+.select-files{
+	color: #888;
+}
+
+.upload-btn{
+	margin-bottom: 20px;
+}
+
+@media screen and (min-width: 940px){
+	.form-container{
+		margin-top: 30px;
+	}
+}
+@media screen and (max-width: 940px){
+	.container{
+		width: 100% !important;
+	}
+	.form-container .row{
+		margin-left: 0px !important;
+		margin-right: 0px !important;
+	}
+}

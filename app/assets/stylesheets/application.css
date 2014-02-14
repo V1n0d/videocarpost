@@ -1,0 +1,248 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require plugins/bootstrap
+ *= require plugins/font-awesome
+ *= require fonts
+ */
+
+ #error_explanation h2{
+ 	display: none;
+ }
+ #error_explanation ul{
+ 	padding: 5px;
+ 	color: red;
+ 	background: #fff;
+ 	list-style: none;
+ 	text-align: center;
+ }
+
+ span.error{
+ 	display: none !important;
+ 	position: absolute;
+ 	top: 10px;
+ 	right: 0px;
+ 	padding: 3px 10px;
+ 	background: #fff;
+ 	border: 1px solid rgb(202, 0, 0);
+ 	color: red;
+ }
+
+ input.error, select.error{
+ 	/*outline-color: red !important;*/
+ 	border-color: red !important;
+ }
+ .field{
+ 	position: relative;
+ }
+
+ .container{
+ 	width: 940px !important;
+ }
+ body{
+ 	margin: 0px;
+ }
+ header{
+ 	width: 100%;
+ }
+
+
+ .logo img{
+ 	display: inline-block;
+ 	padding: 7px 10px 10px 10px;
+ 	width:130px;
+ }
+
+ .logo:hover{
+ 	text-decoration: none;
+ 	color: #fff;
+ }
+
+ .navigationbar{
+ 	margin: 0;
+ 	padding: 0;
+ 	list-style: none;
+ }
+
+ .navigationbar li{
+ 	display: inline;
+ }
+ .icon-bar{
+ 	border: 1px solid #fff;
+ }
+ .home-link{
+ 	font-family: 'segoe_uiregular';
+ 	padding: 10px;
+ 	display: inline-block;
+ 	color: #eaeaea;
+ 	font-size: 18px;
+ }
+
+ .home-link:hover{
+ 	text-decoration: none;
+ 	
+ 	color: #222;
+ }
+
+ .register{
+ 	font-family: 'segoe_uiregular';
+ 	padding: 10px;
+ 	float: right;
+ 	display: inline-block;
+ 	color: #eaeaea;
+ 	font-size: 18px;
+ 	text-transform: capitalize;
+ }
+
+ .register:hover{
+ 	text-decoration: none;
+ 	
+ 	color: #222;
+ }
+
+ span.emailid{
+ 	word-wrap:break-word;
+ }
+
+ .owner-info-label{
+ 	/*padding: 10px;*/
+ 	display: inline-block;
+ }
+
+.wrap{
+	min-height: 100%;
+	padding-bottom: 40px;
+	margin-bottom: -40px;
+}
+
+ /*FOOTER*/
+ footer{
+ 	width: 100%;
+ }
+
+ .footer-nav{
+ 	display: inline-block;
+ 	padding: 10px;
+ 	color: #fff;
+ }
+
+ a.footer-nav:hover{
+ 	
+ 	color: #428bca;
+ 	text-decoration: none;
+ }
+
+
+ @media screen and (max-width: 768px){
+ 	.container{
+ 		width: 100% !important;
+ 	}
+ 	.navigationbar li{
+ 		display: block;
+ 	}
+ 	.register{
+ 		float: none;
+ 	}
+ 	.divider{
+ 		border-top: 1px solid #fafafa;
+ 		margin: 4px 0px;
+ 	}
+
+ 	.navigationbar li a:hover, .navigationbar li:hover{
+ 		
+ 		border-r222us: 4px;
+ 	}
+ 	.navigationbar {
+ 		margin-bottom: 5px;
+ 	}
+ 	.home-link:hover, .register:hover{
+ 		color: #fff;
+ 	}
+ }
+
+ main{
+ 	min-height: 100% !important;
+ }
+
+ @media screen and (min-width: 768px){
+	.home-link, .register{
+		line-height:65px;
+	}
+}
+
+@media screen and (min-width: 980px){
+	header .container{
+ 	background-color: #d00b0e;
+ 	width: 970px !important;
+ }
+ footer .container{
+ 	width: 970px !important;
+ }
+
+}
+.preview{
+	width:200px;
+	height:200px;
+}
+
+.buy_credits{
+	margin-top : 20px;
+}
+
+.no-credits {
+	color: #FF0000;
+	font-family: sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.upload-note{
+	padding-top:20px;
+	color : #47A447
+}
+
+.car_model_select{
+	padding-top:20px !important;
+}
+
+header{
+	border-bottom: 10px solid #fff;
+	 -webkit-background-clip: padding-box; /* for Safari */
+    background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+}
+header .container{
+ 	background-color: #d00b0e;
+ }
+footer .container{
+	background-color: #383E49;
+}
+body{
+		background-color: #dadada !important;
+		background-image: url("/assets/pat.jpg");
+}
+
+.wrap {
+background-color: #fff !important;
+}
+.body-container{
+	min-height: 100%;
+	margin: 0 auto;
+	background-color: #fff;
+}
+
+
+@media screen and (min-width: 940px){
+	.body-container{
+		width: 970px;
+		min-height: 100%;
+	}
+}

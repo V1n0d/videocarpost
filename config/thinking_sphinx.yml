@@ -1,0 +1,9 @@
+development:
+  mem_limit: 128M
+  min_infix_len: 3
+test:
+  mem_limit: 128M
+  min_infix</em>len: 3
+production:
+  mem_limit: 128M
+  min_infix_len: 3

@@ -1,0 +1,16 @@
+<% if @from == "index" %>
+	<label class="filter-desc">Car Model</label>
+	<select name="car_model_name" class="form-control">
+		<option value="">--Select--</option>
+		<% @carmodels.each do |cm| %>
+			<option value="<%=cm.name%>"><%=cm.name%></option>
+		<% end %>
+	</select>
+<% else %>
+	<label class="filter-desc">Car Model</label>
+	<select name="car[car_model_id]" class="pull-right form-control input-field">
+		<% @carmodels.each do |cm| %>
+			<option value="<%=cm.id%>"><%=cm.name%></option>
+		<% end %>
+	</select>
+<% end %>

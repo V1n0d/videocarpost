@@ -1,0 +1,31 @@
+<header>
+  <div class="container text-center">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a href="/" class="logo pull-left"><img src="/assets/VideoCarPost.png"></a>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navigationbar">
+        <%if user_signed_in? %>
+        <li><a href="/cars/new" class="home-link">Upload Video</a></li>
+        <% else %>
+        <li><a href="/" class="home-link">Home</a></li>
+        <li><a href="#" class="home-link">About</a></li>
+        <li><a href="#" class="home-link">Contact</a></li>
+        <%end%>
+        <!-- Profile menu -->
+        <li class="divider"></li>
+        <%if user_signed_in? %>
+        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete,:class => "register" %></li>
+        <li><%= link_to current_user.first_name ? current_user.first_name : current_user.email.split('@')[0], "/display_user/#{current_user.id}",:class => "register" %></li>
+        <% else %>
+        <li><%= link_to "Register", "/users/sign_up",:class => "register" %></li>
+        <li><%= link_to "Login", "/users/sign_in",:class => "register" %></li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+</header>

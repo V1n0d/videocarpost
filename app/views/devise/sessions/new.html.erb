@@ -1,0 +1,69 @@
+<%= stylesheet_link_tag "devise", media: "all" %>
+<h2>Sign in</h2>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<div class="all-fields">
+	<div class="field">
+		<%= f.label :email %>
+		<%= f.text_field :email, :autofocus => true %>
+	</div>
+	<div class="field">
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+	</div>
+</div>
+<% if devise_mapping.rememberable? -%>
+	<div class="remember-me">
+		<%= f.check_box :remember_me %> 
+		<%= f.label :remember_me %>
+	</div>
+<% end -%>
+
+<div class="buttons">
+	<%= f.submit "Sign in",:class=>'pull-right login-btn btn btn-danger' %>
+	<%= link_to "Sign up", "/users/sign_up",:class=>'signup pull-right btn btn-link' %>
+</div>
+
+<% end %>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$(document).on("click",".login-btn",function(e){
+			if($("#new_user").valid()){
+				return true 
+			}
+			else{
+				return false
+			}
+		});
+
+		$("#new_user").validate({
+			errorElement: "span",
+			highlight: function (element, errorClass) {
+				$(element).addClass('error');
+			},
+			rules: {
+				"user[password]": {
+					'required' : true,
+					minlength: 8
+				},
+				"user[email]": {
+					'required' : true,
+					'email' : true
+				}
+			},
+			messages: {
+				"user[password]": {
+					'required' : "Enter the Password",
+					'minlength' : "Enter atleast 8 characters"
+				},
+				"user[email]": "Enter the valid Email"
+			}
+
+		});
+
+
+	});
+</script>

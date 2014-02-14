@@ -1,0 +1,509 @@
+// Place all the styles related to the Cars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+html, body{
+	font-family: 'Open Sans', sans-serif;
+	margin: 0px;
+	padding: 0px;
+	overflow-x:hidden;
+	word-wrap: break-word;
+}
+
+.show-tab{
+	display: none;
+}
+
+.search-container{
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;}
+
+	.search-container .container{
+		background-color: #2C394A;
+		padding-bottom: 20px;
+	}
+
+	.search-form{
+		display: block;
+	}
+
+	.filter-desc{
+		padding: 10px 5px;
+		font-weight: 400;
+		display: block;
+	}
+
+	.search-btn-container{
+		height: 100%;
+		padding: 10px;
+	}
+	.search-btn{
+		font-family: 'Open Sans', sans-serif;
+		padding: 10px 40px;
+		background-color: #d00b0e;
+		color: #fff;
+		font-size: 20px;
+		font-weight: bold;
+		display: inline-block;
+		border-radius: 4px;
+		margin-top:30px;
+		border:none;
+	}
+
+	.search-btn:hover{
+		background-color: #00A0B1;
+		text-decoration: none;
+		color: #fff;
+	}
+
+	/*VIDEO CONTAINER STARTS HERE*/
+	.video-container{
+		padding: 20px 15px 40px 15px;
+	}
+
+	.video-container .container{
+		background-color: #F9FEFC;
+	}
+	#video-controls{
+		color: #FFFFFF;
+		left: 42%;
+		position: absolute;
+		text-align: center;
+		top: 37%;
+	}
+
+	.video-controls{
+		color: #FFFFFF;
+		left: 40%;
+		position: absolute;
+		text-align: center;
+		top: 37%;
+	}
+	#play-pause{
+		height: 80px;
+		width: 80px;
+		border-radius: 50%;
+		font-size: 40px;
+		background-color: #d00b0e;
+		color: #fff;
+		border: none;
+	}
+
+
+
+	#play-pause:focus{
+		outline: none;
+	}
+	.main-video, .owner-desc{
+		padding: 10px;
+		border-radius: 4px;
+		background-color: #f8f9fa;
+	}
+
+	.owner-desc{
+		background-color:#fff;
+		border: 1px solid #eaeaea;
+	}
+	.main-vid{
+		height: 300px;
+		width: 100%;
+	}
+
+	.profile-pic{
+		margin-top: 15px;
+		display: inline-block;
+		padding: 3px;
+		height: 100%;
+		width: 100%;
+		background-color: #fff;
+	}
+
+	.owner-name{
+		margin: 10%;
+		font-size: 20px;
+		color: #888;
+	}
+	.contact-btn{
+		padding: 5px 10px;
+		background-color: #d00b0e;
+		border-radius: 4px;
+		color: #fff;
+	}
+
+	.contact-btn:hover{
+		text-decoration: none;
+		color: #fff;
+		background-color: #00A0B1;
+	}
+
+	.owner-name{
+		font-weight: bold;
+	}
+
+	.owner-info-label{
+		color: #a3a199;
+	}
+
+	.owner-details{
+		background-color: #FFFFFF;
+		height: 199px;
+		margin-top: 20px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		padding: 15px 0 0 0;
+		vertical-align: middle;
+	}
+/*.user-profile-padding{
+padding: 10px 0px 0px 15px;
+}*/
+/*VIDEO DIV ENDS*/
+.recommended-video-container{
+	#play-pause{
+		height: 36px;
+		width: 36px;
+		border-radius: 50%;
+		font-size: 20px;
+		background-color: #d00b0e;
+		color: #fff;
+		border: none;
+		span{
+			
+		font-size: 17px;
+		}
+	}
+	.video-controls {
+		color: #FFFFFF;
+		left: 43%;
+		position: absolute;
+		text-align: center;
+		top: 30%;
+	}
+}
+.video-recommend-head{
+	color: #fff;
+}
+.video-recommend-head .container{
+	padding: 10px;
+	background-color: #d00b0e;
+
+}
+
+.scroll-videos{
+	color: #888;
+}
+.scroll-videos:hover{
+	color: #fff;
+	text-decoration: none;
+}
+.carousel-control{
+	position: relative;
+	top: auto;
+	bottom: auto;
+	left: auto;
+	width: 15%;
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+.glyphicon-chevron-right{
+	right: auto;
+	left: 20px;
+	top: -1px;
+}
+.recommend-video{
+	width: 100%;
+	height: 100%;
+}
+
+.video-list{
+	padding: 15px;
+	/*background-color: #fafafa;*/
+}
+
+.video-list:hover{
+	/*background-color: #eaeaea*/
+}
+.price{
+	display: block;
+	padding: 10px 5px 5px;
+	color: #DC572E;
+	font-style: 18px;
+	font-weight: bold;
+}
+.author, .product-desc{
+	display: block;
+	padding-top: 3px;
+	padding-left: 5px;
+	color: #222;
+}
+.author{
+	font-size: 16px;
+	font-weight: 600;
+}
+.product-desc{
+	font-size: 12px;
+}
+
+.video-tab{
+	padding-top: 15px;
+	position: relative;
+	border-radius: 4px;
+	width: 275px;
+	display: inline-block;
+	border:1px solid #d7dadb;
+}
+.video-tab:hover{
+	border-color: #69bbdc;
+	box-shadow:0px 1px 1px 1px #69bbdc;
+	-webkit-box-shadow:0px 1px 1px 1px #69bbdc;
+	-moz-box-shadow:0px 1px 1px 1px #69bbdc;
+}
+
+
+.recommend-img {
+	height: 150px;
+	width: 250px;
+}
+.recommended-video-desc{
+	width: 250px;
+	display: inline-block;
+}
+/*premium-account-container*/
+.premium-account-container{
+
+}
+.premium-account-head{
+	color: #fff;
+}
+
+.premium-account-head .container{
+	background-color: #d00b0e;
+	padding: 10px;
+}
+.premium-membership-form{
+	padding: 20px;
+}
+
+.buy-head{
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+	padding: 10px;
+	background-color: #2C394A;
+	margin-bottom: 20px;
+	color: #fff;
+	border-radius: 4px;
+}
+.buy-input{
+	margin-bottom: 10px;
+}
+
+.membership-text{
+	min-height: 177px;
+	background-color: #F9FEFC;
+	padding: 10px;
+}
+.membership-head{
+	display: block;
+	font-size: 18px;
+}
+.membeship-desc {
+	font-size: 12px;
+	display: block;
+	text-align: justify;
+}
+
+.buy-btn{
+	display: block;
+	padding: 10px;
+	width: 100%;
+	border-radius: 4px;
+	background-color: #2C394A;
+	color: #fff;
+}
+
+.buy-btn:hover{
+	background-color: #00A0B1;
+	color: #fff;
+	text-decoration: none;
+}
+
+.offer{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+	.slider-controls a{
+		color: #fff;
+		font-size: 16px;
+		margin-right: 40px !important;
+	}
+	.slider-controls a#prev{
+		margin-right: 0px !important;
+	}
+
+
+.triangleTopRight{
+	width:0; 
+	height:0; 
+	border-right:30px solid #6abcdd;
+	border-top:30px solid #6abcdd;
+	border-left:30px solid transparent;
+	border-bottom:30px solid transparent;
+}
+
+@media screen and (min-width: 768px){
+	.user-profile-padding{
+		padding: 10px 0px 0px 15px;
+	}
+	.owner-details{
+		margin-top: 0px;
+		display: block;
+	}
+	.home-link, .register{
+		line-height:65px;
+	}
+
+}
+
+@media screen and (max-width: 1200px) and (min-width:768px ){
+	.owner-name{
+		margin: 20px;
+	}
+	.main-vid{
+		height: auto;
+		width: 100%;
+	}
+
+}
+@media screen and (max-width: 768px){
+	.user-profile-padding{
+		padding-top: 10px;
+	}
+	.price-tab{
+		padding-left: 15px !important;
+	}
+	.search-btn{
+		margin-top: 10px;
+	}
+
+	#play-pause{
+		height: 60px;
+		width: 60px;
+		font-size: 30px;
+	}
+
+	.owner-details{
+		padding-top: 10px;
+		height: auto;
+	}
+	.owner-name{
+		margin: 5px 5px 15px 5px;
+	}
+	.show-tab{
+		display: block;
+		margin-top: 10px;
+		background-color: #d00b0e;
+		border-radius: 2px;
+		padding: 10px 20px;
+		border: none;
+		color: #fff;
+	}
+
+	.show-tab:hover, .show-tab:focus{
+		background-color: #00A0B1;
+		outline: none;
+	}
+	.search-form{
+		display: none;
+	}
+	.main-vid{
+		height: auto;
+		width: 100%;
+	}
+	.profile-pic{
+		margin-top: 15px;
+		display: inline-block;
+		padding: 3px;
+		height: 77px;
+		width: 77px;
+		background-color: #fff;
+	}
+
+}
+
+@media screen and (max-width: 480px){
+	footer span{
+		display: block !important;
+		text-align: center;
+	}
+
+	.main-vid{
+		height: auto;
+		width: 100%;
+	}
+	#play-pause{
+		height: 40px;
+		width: 40px;
+		font-size: 20px;
+	}
+	.bottom-vid{
+		height: 300px !important;
+	}
+}
+
+
+
+
+.buy_credits{
+	margin-top : 20px;
+}
+
+/* Circular Content Carousel Style */
+
+
+.list_carousel {
+	margin: 0 0 0px 60px;
+	width: 360px;
+}
+.list_carousel ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: block;
+}
+.list_carousel li {
+	padding: 0;
+	margin: 6px;
+	display: block;
+	float: left;
+}
+.list_carousel.responsive {
+	width: auto;
+	margin-left: 0;
+}
+.clearfix {
+	float: none;
+	clear: both;
+}
+.prev {
+	float: left;
+	margin-left: 10px;
+}
+.next {
+	float: right;
+	margin-right: 10px;
+}
+
+
+@media screen and (max-width: 1200px) and (min-width: 480px){
+	.profile-pic{
+		width: 100px;
+		height: 100px;
+	}
+}

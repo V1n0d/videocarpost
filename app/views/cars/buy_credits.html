@@ -1,0 +1,127 @@
+<%= stylesheet_link_tag "upload", media: "all" %>
+<div class="container">
+
+<div class="row main-video">
+	<% if flash[:alert] || flash[:notice]%>
+<div class="no-credits"><%= flash[:alert] || flash[:notice] %></div>
+<% end %>
+
+	<div class="col-xs-12 text-center premium-account-container">
+		<span class="premium-account-head">Premium Account</span>
+	</div>
+	<div class="col-xs-12">
+		<video width="100%" height="100%" controls>
+						<source src="video/dumb-die.mp4" type="video/mp4">
+							<source src="video/dumb-die.ogg" type="video/ogg">
+								Your browser does not support the video tag.
+							</video>
+	</div>
+	<div class="col-xs-12">
+			<div class="membership-text">
+								<span class="membership-head">Lorem ipsum header</span>
+								<br>
+								<span class="membeship-desc">	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+								<div class="row form-group buy_credits">
+									<div class="col-lg-4 ">
+							        	<span class="labelo">Number of Videos to upload: </span>
+							    	</div>
+									<div class="col-lg-4 ">
+								   	  <input type="text" value="" id="no_of_videos" class="form-control" autofocus="autofocus">
+									</div>
+							   	</div>
+							</div>
+								
+								<%= link_to "Click here to buy", Payment.paypal_url("http://http://162.243.19.16/response"), :class => "buy-btn text-center" %>
+	</div>
+</div>
+
+</div>
+
+<style>
+.main-video{
+	padding: 40px;
+}
+/*premium-account-container*/
+.premium-account-container{
+	margin-bottom: 20px;
+}
+.premium-account-head{
+	color: #fff;
+	background-color: #d00b0e;
+	padding: 10px 0px;
+	width: 100%;
+	display: block;
+	border-radius: 4px;
+}
+
+.premium-membership-form{
+	padding: 20px;
+}
+
+.buy-head{
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+	padding: 10px;
+	background-color: #2C394A;
+	margin-bottom: 20px;
+	color: #fff;
+	border-radius: 4px;
+}
+.buy-input{
+	margin-bottom: 10px;
+}
+
+.membership-text{
+	min-height: 177px;
+	background-color: #F9FEFC;
+	padding: 10px;
+}
+.membership-head{
+	display: block;
+	font-size: 18px;
+}
+.membeship-desc {
+	font-size: 12px;
+	display: block;
+	text-align: justify;
+}
+
+.buy-btn{
+	display: block;
+	padding: 10px;
+	width: 100%;
+	border-radius: 4px;
+	background-color: #2C394A;
+	color: #fff;
+}
+
+.buy-btn:hover{
+	background-color: #00A0B1;
+	color: #fff;
+	text-decoration: none;
+}
+
+.offer{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+</style>
+
+<script>
+$('.buy-btn').on('click',function(evt){
+	evt.preventDefault();
+	var price_val = $('#no_of_videos').val();
+	if(price_val=='' || isNaN(parseInt(price_val))){
+		$('#no_of_videos').closest('.form-group').addClass('has-error')
+		return false;
+	}
+	var price = parseInt($('#no_of_videos').val())*3;
+	var url = $(this).attr('href');
+	console.log(price)
+	var paypal_url = url+'&amount_1='+price
+	location.replace(paypal_url)
+})
+</script>

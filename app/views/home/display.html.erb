@@ -1,0 +1,130 @@
+<%= stylesheet_link_tag "devise", media: "all" %>
+
+<div class="text-center page-header">
+ <h2>Profile Details</h2>
+</div>
+
+<div class="all-fields">
+ 
+
+  <div class="field row text-left">
+    <div class="row">
+      <div class="col-xs-3"></div>
+      <div class="col-xs-6 field-head text-center">
+          <span><%=image_tag @user.profile_image, :class=>"img-responsive"%></span>
+      </div>
+    </div>
+   <div class="row">
+      <div class="col-lg-6 col-xs-6">
+      <span class="labelo">First Name: </span>
+      </div>
+      <div class="col-lg-6 col-xs-6">
+      <span><%=@user.first_name%></span>
+      </div>
+      <div class="col-lg-6 col-xs-6">
+      <span class="labelo">Last Name: </span>
+      </div>
+      <div class="col-lg-6 col-xs-6">
+      <span><%=@user.last_name%></span>
+      </div>
+      <div class="col-lg-6 col-xs-6">
+      <span class="labelo">Email: </span>
+      </div>
+      <div class="col-lg-6 col-xs-6">
+      <span class="emailid"><%=@user.email%></span>
+      </div>
+       <div class="col-lg-6 col-xs-6">
+      <span class="labelo">Contact Number: </span>
+    </div>
+    <div class="col-lg-6 col-xs-6">
+      <span><%=@user.contact_number%></span>
+    </div>
+   </div>
+  </div>
+  
+  <% if current_user && current_user.id == @user.id %>
+
+  <div class="field row text-left">
+  <div class="row">
+    <div class="col-xs-12 field-head">
+        <span class="labelo-credito text-left">Video Credit Details</span>
+    </div>
+  </div>
+
+  <div class="row">
+     <div class="col-lg-6" style="padding-top: 16px;">
+       <span class="labelo">Credits Left: </span>
+      </div>
+      <div class="col-lg-6">
+         <span><%= current_user.can_upload %> </span>
+        <a href="/buy_credits" class="btn btn-success buy-credit" style="margin-left:10px">Buy Credits</a>
+      </div>
+  </div>
+  </div>
+  
+  <% end %>
+
+
+  <% if current_user &&  current_user.id == @user.id %>
+  <div>
+    <%= link_to raw("<button class='btn btn-danger edit-btn' style='margin-left:0px'>Edit</button>"), edit_user_registration_path %>
+  </div>
+  <% end %>
+</div>
+
+
+
+
+<style>
+
+  .field{
+    width: 370px;
+    margin: auto;
+    display: block;
+    padding: 10px;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    background-color: #FCFCFC;
+    margin-bottom: 20px;
+  }
+
+  .field-head{
+    padding-top:0px !important; 
+    padding-bottom:0px !important;
+  }
+  .UserPro{
+    font-size: 30px;
+    color: #888;
+  }
+  .field div{
+    padding: 10px;
+  }
+
+  .labelo{
+    color: #777;
+  }
+
+  .edit-btn{
+    margin-top: 0px;
+  }
+
+  .labelo-credito{
+    color: #428bca;
+    font-size: 16px;
+  }
+    .page-header{
+  color: #888;
+}
+
+@media screen and (max-width: 940px){
+  .field{
+    width: 100%;
+  }
+  .row{
+    margin: 0px;
+  }
+/*  .buy-credit{
+    display: block;
+  }*/
+}
+</style>

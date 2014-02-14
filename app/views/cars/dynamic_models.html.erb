@@ -3,7 +3,7 @@
 	<select name="car_model_name" class="form-control">
 		<option value="">--Select--</option>
 		<% @carmodels.each do |cm| %>
-			<option value="<%=cm.name%>"><%=cm.name%></option>
+			<option value="<%=cm.id%>"><%=cm.name%></option>
 		<% end %>
 	</select>
 <% else %>

@@ -30,7 +30,10 @@
              </div>
            </div>
          </div>
-       </div>
+        </div>
+        <div class="row">
+        <span class="hide" id="ajax-loader"><img src="/assets/ajax-loader.gif"><h4>Uploading Video</h4></span>
+        </div>
       </div>
       <div class="col-lg-9">
           <div class="row">
@@ -187,6 +190,7 @@
         bootbox.confirm("Once uploaded cannot be changed. Do You want to continue", function(result){
           if(result){
               $('#new_car').submit();
+              $('#ajax-loader').removeClass('hide')
           }
         });
       }

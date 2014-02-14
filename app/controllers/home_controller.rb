@@ -20,10 +20,7 @@ class HomeController < ApplicationController
 	  							:amount => params[:amt]
   							)
   		flash.now[:notice] = "Your Payment is successful."
-  		redirect_to root_url
-  		
-
-  							
+  		redirect_to cars_new_path
   	else
   		redirect_to paypal_error_path
   	end

@@ -4,7 +4,7 @@ require 'capistrano/ext/multistage'
 
 set :application, 'XML Parse scheduler'
 set :scm, :git
-set :repository, "git@github.com:shubham-kedia/xmlparse.git"
+set :repository, "git@github.com:V1n0d/videocarpost.git"
 set :user, "root"
 set :scm_passphrase, ""
 set :branch, "master"

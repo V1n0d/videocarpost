@@ -2,7 +2,7 @@ require "rvm/capistrano"
 require "bundler/capistrano"
 require 'capistrano/ext/multistage'
 
-set :application, 'XML Parse scheduler'
+set :application, 'Video Upload'
 set :scm, :git
 set :repository, "git@github.com:V1n0d/videocarpost.git"
 set :user, "root"

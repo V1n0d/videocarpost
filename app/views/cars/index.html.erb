@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "video-js", media: "all" %>
 <%= stylesheet_link_tag "cars", media: "all" %>
 <%= javascript_include_tag "cars/application" %>
 
@@ -89,13 +90,18 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 main-video">
-				<video class="main-vid" muted><source src=<%= @main_video.try(:video).try(:url) %> type="video/mp4">
+				<!--<video class="main-vid" muted><source src=<%= @main_video.try(:video).try(:url) %> type="video/mp4">
 					Your browser does not support the video tag.
 				</video>
 
 				<div id="video-controls">
 					<button type="button" id="play-pause"><span id="play_btn" class="glyphicon glyphicon-play"></span></button>
-				</div>
+				</div>-->
+
+			  <video id="main_video" class="video-js vjs-default-skin" controls  preload="none" width="540" height="264"
+			      data-setup='{"muted":true}' muted>
+			    <source src="<%= @main_video.try(:video).try(:url) %>" type='video/mp4' />
+			  </video>
 			</div>
 			<div class="col-lg-4 owner-desc">
 				<div class="row">
@@ -105,11 +111,10 @@
 						</div>
 					</div>
 					<div class="col-lg-8 col-xs-12 text-center">
-						<div class="owner-name">
+						
+						<a href="/display_user/<%= @main_video.try(:user_id) %>" class="contact-btn">
 							<span><%= @main_video.try(:user).try(:first_name) %></span>
 							<span><%=@main_video.try(:user).try(:last_name) %></span>
-						</div>
-						<a href="/display_user/<%= @main_video.try(:user_id) %>" class="contact-btn">View user profile</span>
 						</a>
 					</div>
 				</div>
@@ -269,6 +274,8 @@
 
 
 $(document).ready(function(){
+
+	//$('.vjs-mute-control').remove()
 
 	if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)){
 			console.log('mobile')

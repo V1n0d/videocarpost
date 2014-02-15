@@ -1,3 +1,4 @@
+//= require video
 //= require plugins/jquery.mousewheel
 //= require plugins/jquery.touchSwipe.min
 //= require plugins/carousel
